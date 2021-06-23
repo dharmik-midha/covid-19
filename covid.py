@@ -253,6 +253,23 @@ st.markdown("""
                     background-color:black;
                     color:white;
                 }
+                            a{
+                    # font-weight: 300;
+                    # font-family:'Times New Roman', Times, serif;
+                    # text-decoration:none;
+                }
+                .r{
+                    color:red;
+                }
+                .g{
+                    color:green;
+                }
+                .b{
+                    color:blue;
+                }
+                .o{
+                    color:orange;
+                }
                 </style>""",unsafe_allow_html=True)
 
 fig = go.Figure()
@@ -282,6 +299,19 @@ def Home():
     st.markdown(firstpara,unsafe_allow_html=True)
 
     ####################ABOUT OUR PROJECT#########################
+
+    url="https://www.mohfw.gov.in/data/datanew.json"
+    r=requests.get(url)
+    df=json_normalize(r.json())
+
+    def marquee():
+        structure=""
+        for i in range(37):
+            struc="""<a><b>"""+df.state_name[i]+"""</b></a> <i class='r'>A: """+df.active[i]+"""</i> <i class="o">P: """+df.positive[i]+"""</i> <i class="g">C: """+df.cured[i]+"""</i> <i class="b">D: """+df.death[i]+"""</i>   """
+            structure+=struc
+        return structure
+    m=marquee()
+    st.markdown('''<marquee>'''+m+''''</marquee>''',unsafe_allow_html=True)
     #####################Detecting covid -19###################
     st.markdown("<h1 class='Title'>Detecting COVID-19 in X-ray images with Keras, TensorFlow, and Deep Learning</h1>",unsafe_allow_html=True)
 
