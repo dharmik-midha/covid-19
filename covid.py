@@ -270,6 +270,130 @@ st.markdown("""
                 .o{
                     color:orange;
                 }
+
+               
+
+                /* Table Styles */
+
+                .fl-table {
+                    border-radius: 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    border: none;
+                    border-collapse: collapse;
+                    width: 100%;
+                    max-width: 100%;
+                    white-space: nowrap;
+                    background-color: white;
+                }
+
+                .fl-table td, .fl-table th {
+                    text-align: center;
+                    padding: 8px;
+                }
+
+                .fl-table td ,th{
+                    border-right: 1px solid #f8f8f8;
+                    font-size: 12px;
+                }
+
+                .fl-table thead th {
+                    color: #ffffff;
+                    background: #4FC3A1;
+                }
+
+
+                .fl-table thead th:nth-child(odd) {
+                    color: #ffffff;
+                    background: #324960;
+                }
+
+                .fl-table tr:nth-child(even) {
+                    background: #F8F8F8;
+                }
+                 .vggimg{
+                       margin-top:45px;
+                       box-shadow:0 0 0.3em 0.1em black;
+                        
+                    }
+                /* Responsive */
+
+                @media (max-width: 767px) {
+                    .vggimg{
+                        width:80vw;
+                        
+                    }
+                    .fl-table {
+                        display: block;
+                        width: 100%;
+                    }
+                    .table-wrapper:before{
+                        content: "Scroll horizontally >";
+                        display: block;
+                        text-align: right;
+                        font-size: 11px;
+                        color: white;
+                        padding: 0 0 10px;
+                    }
+                    .fl-table thead, .fl-table tbody, .fl-table thead th {
+                        display: block;
+                    }
+                    .fl-table thead th:last-child{
+                        border-bottom: none;
+                    }
+                    .fl-table thead {
+                        float: left;
+                    }
+                    .fl-table tbody {
+                        width: auto;
+                        position: relative;
+                        overflow-x: auto;
+                    }
+                    .fl-table td, .fl-table th {
+                        padding: 20px .625em .625em .625em;
+                        height: 60px;
+                        vertical-align: middle;
+                        box-sizing: border-box;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                        width: 120px;
+                        font-size: 13px;
+                        text-overflow: ellipsis;
+                    }
+                    .fl-table thead th {
+                        text-align: left;
+                        border-bottom: 1px solid #f7f7f9;
+                    }
+                    .fl-table tbody tr {
+                        display: table-cell;
+                    }
+                    .fl-table tbody tr:nth-child(odd) {
+                        background: none;
+                    }
+                    .fl-table tr:nth-child(even) {
+                        background: transparent;
+                    }
+                    .fl-table tr td:nth-child(odd) {
+                        background: #F8F8F8;
+                        border-right: 1px solid #E6E4E4;
+                    }
+                    .fl-table tr td:nth-child(even) {
+                        border-right: 1px solid #E6E4E4;
+                    }
+                    .fl-table tbody td {
+                        display: block;
+                        text-align: center;
+                    }
+                }
+                .tableheadingset{
+                   width:100%;
+                   margin:auto;
+                   text-align: center; 
+                   color: Black; 
+                   margin-bottom:20px ;
+                   padding:2%;
+                   font-family: 'Libre Franklin', sans-serif;
+                }
                 </style>""",unsafe_allow_html=True)
 
 fig = go.Figure()
@@ -283,7 +407,7 @@ def made_by():
    
 def Home():
     ##############HEADING###################
-    st.markdown("<h1 class ='Title'>  Covid-19 X-ray Detection 😷</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class ='Title'>  Covid-19 Detection Using Chest X-Ray</h1>", unsafe_allow_html=True)
     ############CORONA IMAGE##################
     st.markdown("""<div class="polaroid">
         <img src="https://www.fda.gov/files/Coronavirus_3D_illustration_by_CDC_1600x900.png" alt="5 Terre" style="width:100%">
@@ -294,37 +418,61 @@ def Home():
     # st.markdown("<div class='card_img'></div>",unsafe_allow_html=True)
 
     ##################FIRST PARA#############
-    firstpara='''<div class="card">Coronavirus disease (COVID-19) 📍 is an infectious disease caused by a newly discovered coronavirus.
-    Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.  Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness.The best way to prevent and slow down transmission is to be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face.The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).</div>'''
+    firstpara='''<div class="card">Coronavirus disease (Covid-19) 📍 is an infectious disease caused by a newly discovered coronavirus.
+    Most people infected with the Covid-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.  Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness. The best way to prevent and slow down transmission is to be well informed about the Covid-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face. The Covid-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).</div>'''
     st.markdown(firstpara,unsafe_allow_html=True)
 
     ####################ABOUT OUR PROJECT#########################
 
-    url="https://www.mohfw.gov.in/data/datanew.json"
-    r=requests.get(url)
-    df=json_normalize(r.json())
+    # url="https://www.mohfw.gov.in/data/datanew.json"
+    # r=requests.get(url)
+    # df=json_normalize(r.json())
 
-    def marquee():
-        structure=""
-        for i in range(37):
-            struc="""<a><b>"""+df.state_name[i]+"""</b></a> <i class='r'>A: """+df.active[i]+"""</i> <i class="o">P: """+df.positive[i]+"""</i> <i class="g">C: """+df.cured[i]+"""</i> <i class="b">D: """+df.death[i]+"""</i>   """
-            structure+=struc
-        return structure
-    m=marquee()
-    st.markdown('''<marquee>'''+m+''''</marquee>''',unsafe_allow_html=True)
+    # def marquee():
+    #     structure=""
+    #     for i in range(37):
+    #         struc="""<a><b>"""+df.state_name[i]+"""</b></a> <i class='r'>A: """+df.active[i]+"""</i> <i class="o">P: """+df.positive[i]+"""</i> <i class="g">C: """+df.cured[i]+"""</i> <i class="b">D: """+df.death[i]+"""</i>   """
+    #         structure+=struc
+    #     return structure
+    # m=marquee()
+    # st.markdown('''<marquee>'''+m+''''</marquee>''',unsafe_allow_html=True)
     #####################Detecting covid -19###################
-    st.markdown("<h1 class='Title'>Detecting COVID-19 in X-ray images with Keras, TensorFlow, and Deep Learning</h1>",unsafe_allow_html=True)
+    st.markdown("<h1 class='Title'>Detecting Covid-19 in Chest X-Ray images using VGG-16</h1>",unsafe_allow_html=True)
 
-    paragraph='''<div class="card">our automatic COVID-19 detector is obtaining ~90-92% accuracy on our sample dataset based solely on X-ray images — no other data, including geographical location, population density, etc. was used to train this model.<br><br>
-    We are also obtaining 100% sensitivity and 80% specificity implying that:
-    <br>
-    <li>Of patients that do have COVID-19 (i.e., true positives), we could accurately identify them as “COVID-19 positive” 100% of the time using our model.</li>
-    <li>Of patients that do not have COVID-19 (i.e., true negatives), we could accurately identify them as “COVID-19 negative” only 80% of the time using our model.</li></div></div>'''
+    paragraph='''<div class="card">
+    <li>VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR(Imagenet) competition in 2014. It is considered to be one of the excellent vision model architecture till date. ... It follows this arrangement of convolution and max pool layers consistently throughout the whole architecture</li>
+    <li>our automatic Covid-19 detector is obtaining ~95% accuracy on our sample dataset based solely on X-ray images — no other data, including geographical location, population density, etc. was used to train this model.</li>
+    <img class='vggimg' src='https://miro.medium.com/max/1210/1*E7zhhan7Sp7hats4jkKdeA.png'>
+   </div>'''
 
     st.markdown(paragraph,unsafe_allow_html=True)
 
 
     made_by()
+    
+    st.markdown("<h1 class='Title'>Covid-19 Detector</h1>",unsafe_allow_html=True)
+
+
+    # #x-ray
+    left_column,right_column=st.beta_columns(2)
+    file=left_column.file_uploader("Upload Image Here",type=['jpg','png'])
+    classes={0:'Covid Positive',1:'Covid Negative'}
+    if file is not None:
+        img=file.read()
+        file_path=os.path.join("tempDir",file.name)
+        st.success("Upload successfully")
+        right_column.image(img)
+        with open(file_path,"wb") as f: 
+            f.write(img)         
+        model=tf.keras.models.load_model('model_covid_transfer_95.h5')
+        test_image=tf.keras.preprocessing.image.load_img(file_path,target_size=(224,224))
+        os.remove(file_path)
+        test_image=tf.keras.preprocessing.image.img_to_array(test_image)
+        test_image=np.expand_dims(test_image,axis=0)
+        result=model.predict(test_image)
+        # print(classes[int(result[0][0])])
+        st.success(classes[int(result[0][0])])
+           
      ########################### World Map View ###########################
     st.markdown("<h1 class='Title'>World Map View</h1>",
                 unsafe_allow_html=True)
@@ -351,30 +499,6 @@ def Home():
                 ).add_to(world_map)
     folium_static(world_map)
     st.markdown("<h4 style='text-align: center; color: #000000; margin-bottom:70px;'></h4>", unsafe_allow_html=True)
-    
-    st.markdown("<h1 class='Title'>Covid-19 Detector</h1>",unsafe_allow_html=True)
-
-
-    # #x-ray
-    left_column,right_column=st.beta_columns(2)
-    file=left_column.file_uploader("Upload Image Here",type=['jpg','png'])
-    classes={0:'Covid Positive',1:'Covid Negative'}
-    if file is not None:
-        img=file.read()
-        file_path=os.path.join("tempDir",file.name)
-        st.success("Upload successfully")
-        right_column.image(img)
-        with open(file_path,"wb") as f: 
-            f.write(img)         
-        model=tf.keras.models.load_model('model_covid_transfer_95.h5')
-        test_image=tf.keras.preprocessing.image.load_img(file_path,target_size=(224,224))
-        os.remove(file_path)
-        test_image=tf.keras.preprocessing.image.img_to_array(test_image)
-        test_image=np.expand_dims(test_image,axis=0)
-        result=model.predict(test_image)
-        # print(classes[int(result[0][0])])
-        st.success(classes[int(result[0][0])])
-           
    
 
 #################################About Page##########################################################
@@ -385,27 +509,23 @@ def About():
                         <div class="profile">
                             <div class="person3"></div>
                             <h3>Ruchi Pundora</h3>
-                            <p>(MCA Student)</P>
-                            <p>Experience: 2-Years</p>
+                            <p>(MCA Student)</P> 
                         </div>
                         <div class="profile">
                             <div class="person4"></div>
                             <h3>Dharmik Midha</h3>
                             <p>(MCA Student)</P>
-                            <p>Experience: 2-Years</p>
                         </div>
                         <div class='view' ><h1 class='Title'> Back-End Developer's</h1> </div>
                         <div class="profile">
                             <div class="person1"></div>
                             <h3>Dhruv Ahuja</h3>
                             <p>(MCA Student)</P>
-                            <p>Experience: 2-Years</p>
                         </div>
                         <div class="profile">
                             <div class="person2"></div>
                             <h3>Nikita Arora</h3>
                             <p>(MCA Student)</P>
-                            <p>Experience: 2-Years</p>
                         </div>
                    </div>
                 ''',unsafe_allow_html=True)
@@ -418,8 +538,8 @@ def About():
 
 ################################ Help############################################################
 def Help():
-    st.markdown("<h1 class='Title'>Prevention's</h1>",unsafe_allow_html=True)
-    secondpara='''<div class=card1>To prevent infection and to slow transmission of COVID-19, do the following:
+    st.markdown("<h1 class='Title'>Preventions</h1>",unsafe_allow_html=True)
+    secondpara='''<div class=card1>To prevent infection and slow transmission of COVID-19, do the following:
                 <ul class="list">
                 <li>Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub.</li>
                 <li>Maintain at least 1 metre distance between you and people coughing or sneezing.</li>
@@ -427,7 +547,7 @@ def Help():
                 <li>Cover your mouth and nose when coughing or sneezing.</li>
                 <li>Stay home if you feel unwell.</li>
                 <li>Refrain from smoking and other activities that weaken the lungs.</li>
-                <li>Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people.</li>
+                <li>Practice physical distancing by avoiding unnecessary travel and staying away from large group of people.</li>
                 <ul><div>'''
     st.markdown(secondpara,unsafe_allow_html=True)
 
@@ -474,7 +594,7 @@ def Help():
     ###############################################Graph#####################################
 def Graphs():
     
-    st.markdown("<h1 class='Title'> 😷 Covid-19 Dashboard 😷</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='Title'>  Covid-19 Dashboard </h1>", unsafe_allow_html=True)
     #################################################################################
     #Different Api
     url = 'https://api.covid19api.com/countries'
@@ -634,26 +754,38 @@ def Vaccine():
     r=requests.get(url)
     df=json_normalize(r.json())
 
-    st.markdown(" <h1 class='Title'>Information Regarding Vaccine's </h1>",unsafe_allow_html=True)
+    st.markdown(" <h1 class='tableheadingset'>Information Regarding Vaccine's </h1>",unsafe_allow_html=True)
 
-    
     def vacapi():
         struct=""   
         for i in range(37):
-            structure="""<div class='grid-item'><ul>
-                            <h4 class='Title'>"""+df.vacc_st_data[0][i]['st_name']+"""</h4>
-                            <p><b>Sr. Citizen 1st Dose: </b><span>"""+df.vacc_st_data[0][i]['dose1']+"""</span></p>
-                            <p><b>Adult 1st Dose: </b><span>"""+df.vacc_st_data[0][i]['dose2']+"""</span></p>
-                            <p><b class='highlight'>Total 1st Dose: </b><span>"""+df.vacc_st_data[0][i]['total_doses']+"""</span></p>
-                            <p><b>Sr. Citizen 2nd Dose: </b><span>"""+df.vacc_st_data[0][i]['last_dose1']+"""</span></p>
-                            <p><b>Adult 2nd Dose: </b><span>"""+df.vacc_st_data[0][i]['last_dose2']+"""</span></p>
-                            <p><b class='highlight'>Total 2nd Dose: </b><span>"""+df.vacc_st_data[0][i]['last_total_doses']+"""</span></p>
-                        </ul></div>"""
+            structure="""<tr>
+                            <td>"""+df.vacc_st_data[0][i]['st_name']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['dose1']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['dose2']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['total_doses']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['last_dose1']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['last_dose2']+"""</td>
+                            <td>"""+df.vacc_st_data[0][i]['last_total_doses']+"""</td>
+                        </tr>"""
             struct+=structure
         return struct
 
     structure=vacapi()
-    st.markdown("""<div class='grid'>"""+structure+"""</div>""",unsafe_allow_html=True)
+    st.markdown("""<div class="table-wrapper">
+        <table class="fl-table">
+    <thead>
+        <tr>
+        <th class="header">State Name</th>
+        <th class="header">Sr. Citizen 1st Dose</th>
+        <th class="header">Adult 1st Dose</th>
+        <th class="header">Total 1st Dose</th>
+        <th class="header">Sr. Citizen 2nd Dose</th>
+        <th class="header">Adult 2nd Dose</th>
+        <th class="header">Total 2nd Dose</th>
+        </tr>
+    </thead>
+    <tbody>"""+structure+"""</tbody></table></div>""",unsafe_allow_html=True)
     made_by()
 
 
