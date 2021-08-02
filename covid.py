@@ -92,14 +92,14 @@ st.markdown("""
                 }
                 .css-qpy8u8,.css-bauj2f{color:#252627}
                 .person2{
-                    background:url('https://media-exp1.licdn.com/dms/image/C4D03AQHj-G7HKacpgw/profile-displayphoto-shrink_800_800/0/1590663509591?e=1627516800&v=beta&t=ypsI6iA-Iyqgi7-NcD3mz6t4usmqgTSOPp5kByr72K4')no-repeat center center/cover;
+                    background:url('https://media-exp1.licdn.com/dms/image/C4D03AQHj-G7HKacpgw/profile-displayphoto-shrink_200_200/0/1590663509591?e=1633564800&v=beta&t=TyHtZhKcP9SJ4hNm2OtCPG8_uDJTu-VF3NDKxaeT58g')no-repeat center center/cover;
                     width:150px;
                     height:150px;                    
                     border-radius:50%; 
                     margin:auto;
                 }
                 .person3{
-                    background:url('https://media-exp1.licdn.com/dms/image/C4E03AQGFVetJwmDGHQ/profile-displayphoto-shrink_200_200/0/1620400899860?e=1627516800&v=beta&t=HUs0dEVjtGHXE1pDEgS9T_L4CVNPUc-mLTCheN15keA')no-repeat center center/cover;
+                    background:url('https://media-exp1.licdn.com/dms/image/C4E03AQGFVetJwmDGHQ/profile-displayphoto-shrink_200_200/0/1620400899860?e=1633564800&v=beta&t=DvBvw8RXgC00s5jHyuToXp5NMesnZUD6hU3UzBhviG8')no-repeat center center/cover;
                     width:150px;
                     height:150px;                    
                     border-radius:50%; 
@@ -436,6 +436,7 @@ def Home():
     #     return structure
     # m=marquee()
     # st.markdown('''<marquee>'''+m+''''</marquee>''',unsafe_allow_html=True)
+
     #####################Detecting covid -19###################
     st.markdown("<h1 class='Title'>Detecting Covid-19 in Chest X-Ray images using VGG-16</h1>",unsafe_allow_html=True)
 
@@ -497,7 +498,7 @@ def Home():
                                 "<li>Death Rate: "+ str(np.round(death_df.iloc[i,-1]/(confirmed_df.iloc[i,-1]+1.00001)*100,2))+ "</li>"+
                             "</ul></div>",
                 ).add_to(world_map)
-    folium_static(world_map)
+    folium_static( world_map)
     st.markdown("<h4 style='text-align: center; color: #000000; margin-bottom:70px;'></h4>", unsafe_allow_html=True)
    
 
@@ -603,6 +604,7 @@ def Graphs():
 
     #to select a country
     top_row = pd.DataFrame({'Country':['Select a Country'],'Slug':['Empty'],'ISO2':['E']})
+    
     # Concat with old DataFrame and reset the Index.
     df0 = pd.concat([top_row, df0]).reset_index(drop = True)
 
